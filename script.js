@@ -44,16 +44,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Book card hover effects
-    const bookCards = document.querySelectorAll('.book-card');
-    bookCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
+    // const bookCards = document.querySelectorAll('.book-card');
+    // bookCards.forEach(card => {
+    //     card.addEventListener('mouseenter', function() {
+    //         this.style.transform = 'translateY(-10px) scale(1.02)';
+    //     });
         
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
+    //     card.addEventListener('mouseleave', function() {
+    //         this.style.transform = 'translateY(0) scale(1)';
+    //     });
+    // });
     
     // Scroll animations
     const observerOptions = {
@@ -80,16 +80,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Parallax effect for book covers
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.book-cover');
+    // window.addEventListener('scroll', function() {
+    //     const scrolled = window.pageYOffset;
+    //     const parallaxElements = document.querySelectorAll('.book-cover');
         
-        parallaxElements.forEach(element => {
-            const speed = 0.1;
-            const yPos = -(scrolled * speed);
-            element.style.transform = `translateY(${yPos}px)`;
-        });
-    });
+    //     parallaxElements.forEach(element => {
+    //         const speed = 0.1;
+    //         const yPos = -(scrolled * speed);
+    //         element.style.transform = `translateY(${yPos}px)`;
+    //     });
+    // });
+    
+    // Scroll to top functionality
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
     
     // Scroll to top function
     function scrollToTop() {
@@ -99,24 +102,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Add click event to scroll-to-top button
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', scrollToTop);
+    }
+    
     // Add scroll indicator to scroll-to-top button
     window.addEventListener('scroll', function() {
-        const scrollTop = document.querySelector('.scroll-top');
-        if (window.pageYOffset > 300) {
-            scrollTop.style.opacity = '1';
-            scrollTop.style.visibility = 'visible';
-        } else {
-            scrollTop.style.opacity = '0';
-            scrollTop.style.visibility = 'hidden';
+        if (scrollTopBtn) {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
         }
-    });
-    
-    // Initialize scroll-to-top button visibility
-    document.addEventListener('DOMContentLoaded', function() {
-        const scrollTop = document.querySelector('.scroll-top');
-        scrollTop.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
-        scrollTop.style.opacity = '0';
-        scrollTop.style.visibility = 'hidden';
     });
     
     // Enhanced button interactions
@@ -171,75 +170,86 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
-});
+}); 
 // Add this to your existing DOMContentLoaded event listener
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', function() {
     // Your existing code...
     
-    // Mobile menu functionality
-    const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
-    const mobileCloseBtn = document.querySelector(".mobile-close-btn");
-    const mobileNav = document.querySelector(".mobile-nav");
-    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+    // Scroll to top functionality
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
     
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener("click", () => {
-            mobileNav.classList.add("active");
-            document.body.style.overflow = "hidden"; // Prevent scrolling when menu is open
+    // Scroll to top function
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
     }
     
-    if (mobileCloseBtn) {
-        mobileCloseBtn.addEventListener("click", () => {
-            mobileNav.classList.remove("active");
-            document.body.style.overflow = ""; // Re-enable scrolling
-        });
+    // Add click event to scroll-to-top button
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', scrollToTop);
     }
     
-    mobileNavLinks.forEach(link => {
-        link.addEventListener("click", function() {
-            mobileNav.classList.remove("active");
-            document.body.style.overflow = ""; // Re-enable scrolling
-            
-            // Smooth scroll to section
-            const targetId = this.getAttribute("href").substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+    // Add scroll indicator to scroll-to-top button
+    window.addEventListener('scroll', function() {
+        if (scrollTopBtn) {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
             }
-        });
+        }
     });
     
-    // Update the selector for nav links to match the new structure
-    const navLinks = document.querySelectorAll(".nav-menu .nav-link");
-    // Rest of your existing code for navLinks...
+    // Your existing code...
 });
+
 // Add this to your existing DOMContentLoaded event listener
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', function() {
     // Your existing code...
     
-    // Scroll to top button functionality
-    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    // Scroll to top functionality
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
     
-    if (scrollTopBtn) {
-        scrollTopBtn.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
-        
-        // Show/hide scroll to top button based on scroll position
-        window.addEventListener("scroll", () => {
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.classList.add("visible");
-            } else {
-                scrollTopBtn.classList.remove("visible");
-            }
+    // Scroll to top function
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
     }
+    
+    // Add click event to scroll-to-top button
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', scrollToTop);
+    }
+    
+    // Add scroll indicator to scroll-to-top button
+    window.addEventListener('scroll', function() {
+        if (scrollTopBtn) {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        }
+    });
+    
+    // Remove the parallax effect for book covers to match the screenshot
+    // Comment out or remove this code:
+    /*
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.book-cover');
+        
+        parallaxElements.forEach(element => {
+            const speed = 0.1;
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+    });
+    */
+    
+    // Your existing code...
 });
